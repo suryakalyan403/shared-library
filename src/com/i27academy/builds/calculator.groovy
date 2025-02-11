@@ -1,44 +1,30 @@
-package com.i27academy.builds;
+package com.i27academy.builds
 
-class Calculator {
+class Calculator implements Serializable {
+    def jenkins
 
-      def jenkins
+    Calculator(jenkins) {
+        this.jenkins = jenkins
+    }
 
-      Calculator(jenkins){
+    // Addition Method
+    def add(n1, n2) {
+        return n1 + n2
+    }
 
-         this.jenkins = jenkins
+    // Subtraction Method
+    def sub(n1, n2) {
+        return n1 - n2
+    }
 
-      }
+    // Multiplication Method
+    def mul(n1, n2) {
+        return n1 * n2
+    }
 
-
-      //Addition Method
-      def add(n1, n2){
-
-          return n1 + n2
-
-      }
-
-      //Subtraction Method
-      def sub(n1, n2){
-
-          return n1 - n2
-
-      }
-
-      //Multiplication Method
-      def mul(n1,n2){
-
-          return n1 * n2
-
-      }
-
-      //Division Method
-      def div(n1, n2){
-
-          return n1/n2
-
-      }
-
-
+    // Division Method
+    def div(n1, n2) {
+        return n1 / n2
+    }
 }
 

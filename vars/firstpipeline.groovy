@@ -5,7 +5,7 @@ import com.i27academy.builds.Calculator
 
 def call(Map pipelineparams){
 
-    Calculator calculator = new Calculator(this)
+    Calculator calculator = new com.i27academy.builds.Calculator(this)
 
 
     pipeline {

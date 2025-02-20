@@ -3,8 +3,8 @@ package com.i27academy.builds
 class Calculator implements Serializable {
     def jenkins
 
-    Calculator(jenkins) {
-        this.jenkins = jenkins
+    Calculator(steps) {
+        this.steps = steps
     }
 
     // Addition Method

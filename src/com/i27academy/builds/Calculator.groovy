@@ -29,7 +29,7 @@ class Calculator implements Serializable {
 
     def dockerImgExtract(filePath, fileName) {
 
-        docker extract -i filePath/fileName
+        docker extract -i ${filePath}/${fileName}
 
         return "$fileName: Image Extracted Successfully"
     }

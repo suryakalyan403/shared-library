@@ -11,7 +11,7 @@ def call(Map pipelineparams) {
                         Calculator calculator = new Calculator(steps)
 
                         // Call the dockerImgExtract method
-                        def result = calculator.dockerImgExtract("/home/rsoni/base/0.4.9/images", "base-0.4.9.tar.gz")
+                        def result = calculator.dockerImgExtract("/var/lib/jenkins/workspace/images", "base-0.4.9.tar.gz")
                         echo result
 
                         // Call the add method

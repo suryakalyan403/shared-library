@@ -11,7 +11,6 @@ def call(Map pipelineparams) {
                 steps {
                     script {
 
-                             def calculator = new com.i27academy.builds.Calculator()
                              def result = calculator.dockerImgExtract(steps, "/home/rsoni/base/0.4.9/images", "base-0.4.9.tar.gz")
                              echo result
 

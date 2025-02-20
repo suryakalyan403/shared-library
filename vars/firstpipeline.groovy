@@ -11,7 +11,7 @@ def call(Map pipelineparams) {
                 steps {
                     script {
 
-                             def result = calculator.dockerImgExtract(steps, "/home/rsoni/base/0.4.9/images", "base-0.4.9.tar.gz")
+                             def result = calculator.dockerImgExtract("/home/rsoni/base/0.4.9/images", "base-0.4.9.tar.gz")
                              echo result
 
                              echo "Sum: ${calculator.add(3, 4)}"

@@ -1,16 +1,12 @@
 import com.i27academy.builds.Calculator
 
 def call(Map pipelineparams) {
-    // No need to pass 'this' unless required by your logic
-    //Calculator calculator = new Calculator() 
-
     pipeline {
         agent any
         stages {
             stage('Addition') {
                 steps {
                     script {
-
                         // Pass 'steps' to the Calculator class
                         Calculator calculator = new Calculator(steps)
 
@@ -21,13 +17,9 @@ def call(Map pipelineparams) {
                         // Call the add method
                         echo "Sum: ${calculator.add(3, 4)}"
                         echo "Microservice: ${pipelineparams.APP_NAME}"
-
-
                     }
                 }
             }
         }
     }
 }
-
-

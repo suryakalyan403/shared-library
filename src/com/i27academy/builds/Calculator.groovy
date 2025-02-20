@@ -1,7 +1,7 @@
 package com.i27academy.builds
 
 class Calculator implements Serializable {
-    def jenkins
+    def steps
 
     Calculator(steps) {
         this.steps = steps
@@ -35,9 +35,4 @@ class Calculator implements Serializable {
             steps.error "Failed to extract image: ${e.message}"
         }
     }
-
-
 }
-
-
-

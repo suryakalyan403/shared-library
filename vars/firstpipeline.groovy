@@ -2,7 +2,7 @@ import com.i27academy.builds.Calculator
 
 def call(Map pipelineparams) {
     // No need to pass 'this' unless required by your logic
-    Calculator calculator = new Calculator() 
+    //Calculator calculator = new Calculator() 
 
     pipeline {
         agent any
@@ -11,14 +11,23 @@ def call(Map pipelineparams) {
                 steps {
                     script {
 
-                             def result = calculator.dockerImgExtract("/home/rsoni/base/0.4.9/images", "base-0.4.9.tar.gz")
-                             echo result
+                        // Pass 'steps' to the Calculator class
+                        Calculator calculator = new Calculator(steps)
 
-                             echo "Sum: ${calculator.add(3, 4)}"
-                             echo "Microservice: ${pipelineparams.APP_NAME}"
+                        // Call the dockerImgExtract method
+                        def result = calculator.dockerImgExtract("/home/rsoni/base/0.4.9/images", "base-0.4.9.tar.gz")
+                        echo result
+
+                        // Call the add method
+                        echo "Sum: ${calculator.add(3, 4)}"
+                        echo "Microservice: ${pipelineparams.APP_NAME}"
+
+
                     }
                 }
             }
         }
     }
 }
+
+

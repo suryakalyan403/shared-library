@@ -10,9 +10,13 @@ def call(Map pipelineparams) {
             stage('Addition') {
                 steps {
                     script {
-                        echo "Sum: ${calculator.add(3, 4)}"
-                        echo "Method Call: ${calculator.dockerImgExtract('/home/rsoni/base/0.4.9/images', 'base-0.4.9.tar.gz') }"
-                        echo "Microservice: ${pipelineparams.APP_NAME}"
+
+                             def calculator = new com.i27academy.builds.Calculator()
+                             def result = calculator.dockerImgExtract(steps, "/home/rsoni/base/0.4.9/images", "base-0.4.9.tar.gz")
+                             echo result
+
+                             echo "Sum: ${calculator.add(3, 4)}"
+                             echo "Microservice: ${pipelineparams.APP_NAME}"
                     }
                 }
             }

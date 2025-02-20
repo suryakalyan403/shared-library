@@ -29,12 +29,12 @@ class Calculator implements Serializable {
 
     def dockerImgExtract(filePath, fileName) {
         try {
-             sh "docker extract -i ${filePath}/${fileName}"
-             echo "$fileName: Image Extracted Successfully"
+            steps.sh "docker extract -i ${filePath}/${fileName}"
+            steps.echo "$fileName: Image Extracted Successfully"
         } catch (Exception e) {
-             error "Failed to extract image: ${e.message}"
+            steps.error "Failed to extract image: ${e.message}"
         }
-     }
+    }
 
 
 }

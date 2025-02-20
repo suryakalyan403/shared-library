@@ -27,14 +27,25 @@ class Calculator implements Serializable {
         return n1 / n2
     }
 
+
     def dockerImgExtract(filePath, fileName) {
-        try {
-              sh "docker extract -i ${filePath}/${fileName}"
-              return "$fileName: Image Extracted Successfully"
-            } 
-        catch (Exception e) {
-              error "Failed to extract image: ${e.message}"
+    // Ensure the script is running in a Jenkins Pipeline context
+    if (!binding.hasVariable('steps')) {
+        throw new IllegalStateException("This method must be called from a Jenkins Pipeline context.")
     }
+
+    try {
+        // Use the 'sh' step to execute the docker command
+        steps.sh "docker extract -i ${filePath}/${fileName}"
+        return "$fileName: Image Extracted Successfully"
+    } catch (Exception e) {
+        // Use the 'error' step to fail the pipeline with a custom message
+        steps.error "Failed to extract image: ${e.message}"
+    }
+}
+
+
+
 }
 
 }

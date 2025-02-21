@@ -24,11 +24,15 @@ def call(Map pipelineparams) {
                              usernameVariable: 'DOCKER_USER',
                              passwordVariable: 'DOCKER_PASSWORD'
 
-                        )])          
+                        )]) {
+                          
+                             Calculator calculator = new Calculator(steps)
+                             // Call the dockerImgExtract method
+                             //def result = calculator.dockerImgExtract(params.IMG_FILEPATH, params.IMG_FILENAME)
+                             def dockerLogin = calculator.dockerLogin($DOCKER_USER, $DOCKER_PASSWORD, params.REGISTRY_URL)
+                             echo dockerLogin
 
-                        // Pass 'steps' to the Calculator class
-                        Calculator calculator = new Calculator(steps)
-
+                           }    
                         // Call the dockerImgExtract method
                         //def result = calculator.dockerImgExtract(params.IMG_FILEPATH, params.IMG_FILENAME)
                         def dockerLogin = calculator.dockerLogin($DOCKER_USER, $DOCKER_PASSWORD, params.REGISTRY_URL)

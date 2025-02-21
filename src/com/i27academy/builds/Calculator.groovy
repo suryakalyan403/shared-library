@@ -32,7 +32,7 @@ class Calculator implements Serializable {
         try {
 
         steps.sh "echo ${password} | docker login -u ${user} --password-stdin ${registry_url}" }
-
+        return "Successfully Login to Registry: ${registry_url}"
         catch (Exception e) { 
             steps.error "Failed to login: ${e.message}"
         
@@ -45,7 +45,7 @@ class Calculator implements Serializable {
     def dockerImgExtract(filePath, fileName) {
         try {
             steps.sh "docker load -i ${filePath}/${fileName}"
-            steps.echo "$fileName: Image Extracted Successfully"
+            return "$fileName: Image Extracted Successfully"
         } catch (Exception e) {
             steps.error "Failed to extract image: ${e.message}"
         }
@@ -57,7 +57,7 @@ class Calculator implements Serializable {
 
          steps.sh "docker tag ${local_img_name}:${tag} ${registry_url}/${img_name}:${tag}"
          steps.sh "docker push ${registry_url}/${img_name}:${tag}"
-         echo "Image pulled successfully: ${registry_url}/${img_name}:${tag}"
+         return "Image pulled successfully: ${registry_url}/${img_name}:${tag}"
 
     }
     catch (Exception e) {

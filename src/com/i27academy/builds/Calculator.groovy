@@ -27,6 +27,21 @@ class Calculator implements Serializable {
         return n1 / n2
     }
 
+    def dockerLogin(user, password, registry_url) {
+
+        try {
+
+        steps.sh "docker login -u ${user} -p {password} ${registry_url}" }
+
+        catch (Exception e) { 
+            setps.error "Failed to login: ${e.message}"
+        
+        }
+         
+
+   }
+
+
     def dockerImgExtract(filePath, fileName) {
         try {
             steps.sh "docker load -i ${filePath}/${fileName}"

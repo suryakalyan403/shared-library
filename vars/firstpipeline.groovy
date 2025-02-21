@@ -3,7 +3,6 @@ import com.i27academy.builds.Calculator
 def call(Map pipelineparams) {
     pipeline {
         agent any
- 
         //Paramter Definition
         parameters{
          string(name: 'IMG_FILEPATH', defaultValue: "/var/lib/jenkins/workspace/images", description:"Path where Img exists")
@@ -18,11 +17,22 @@ def call(Map pipelineparams) {
             stage('Docker Img Extract') {
                 steps {
                     script {
+
+                        //Use withcredentials to securely Inject Docker Credentials
+                        withCredentials([usernamePassword( 
+                             credentialsId: 'docker_private_registry_creds',
+                             usernameVariable: 'DOCKER_USER',
+                             passwordVariable: 'DOCKER_PASSWORD'
+
+                        )])          
+
                         // Pass 'steps' to the Calculator class
                         Calculator calculator = new Calculator(steps)
 
                         // Call the dockerImgExtract method
                         //def result = calculator.dockerImgExtract(params.IMG_FILEPATH, params.IMG_FILENAME)
+                        def dockerLogin = calculator.dockerLogin($DOCKER_USER, $DOCKER_PASSWORD, params.REGISTRY_URL)
+                        echo dockerLogin
                         def result = calculator.dockerPushImgToRegistry(params.LOC_IMG_NAME, params.REGISTRY_URL, params.IMG_NAME, params.TAG)
                         echo result
 

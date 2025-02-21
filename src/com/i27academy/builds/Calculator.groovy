@@ -34,7 +34,7 @@ class Calculator implements Serializable {
         steps.sh "docker login -u ${user} -p {password} ${registry_url}" }
 
         catch (Exception e) { 
-            setps.error "Failed to login: ${e.message}"
+            steps.error "Failed to login: ${e.message}"
         
         }
          

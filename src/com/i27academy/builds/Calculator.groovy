@@ -35,4 +35,22 @@ class Calculator implements Serializable {
             steps.error "Failed to extract image: ${e.message}"
         }
     }
+
+   def dockerPushImgToRegistry(local_img_name,registry_url,img_name,tag) {
+
+    try {
+
+         steps.sh "docker tag ${local_img_name}:${tag} ${registry_url}/${img_name}:${tag}"
+         steps.sh "docker push ${registry_url}/${img_name}:${tag}"
+         echo "Image pulled successfully: ${registry_url}/${img_name}:${tag}"
+
+    }
+    catch (Exception e) {
+   
+          steps.error "Failed to push image image: ${e.message}"
+
+    }
+
+   }
+
 }

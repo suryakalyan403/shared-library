@@ -23,7 +23,7 @@ def call(Map pipelineparams) {
 
                         // Call the dockerImgExtract method
                         //def result = calculator.dockerImgExtract(params.IMG_FILEPATH, params.IMG_FILENAME)
-                        def result = calculator.dockerPushImgToRegistry(params.LOC_IMG_NAME, params.REGISTRY_URL,params.IMG_NAME,params.IMG_NAME,params.TAG)
+                        def result = calculator.dockerPushImgToRegistry(params.LOC_IMG_NAME, params.REGISTRY_URL, params.IMG_NAME, params.TAG)
                         echo result
 
                     }

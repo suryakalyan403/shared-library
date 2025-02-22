@@ -32,8 +32,8 @@ class Calculator implements Serializable {
 
         try {
           def isuser = isVariable("user", ${user})
-          def isuser = isVariable("password", ${password})
-          def isuser = isVariable("user", ${registry_url})
+          def ispwd = isVariable("password", ${password})
+          def isregistry = isVariable("user", ${registry_url})
           
           steps.sh "echo ${password} | docker login -u ${user} --password-stdin ${registry_url}" 
           return "Successfully Login to Registry: ${registry_url}" 

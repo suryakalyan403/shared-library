@@ -38,6 +38,9 @@ class Calculator implements Serializable {
 
     def dockerImgExtract(filePath, fileName) {
         try {
+           if (!isVariable("FilePath", filePath) || !isVariable("FileName", fileName)) {
+                steps.error "One or more required variables are empty or null."
+            }
             steps.sh "docker load -i ${filePath}/${fileName}"
             return "$fileName: Image Extracted Successfully"
         } catch (Exception e) {
@@ -48,6 +51,9 @@ class Calculator implements Serializable {
    def dockerPushImgToRegistry(local_img_name,registry_url,img_name,tag) {
 
     try {
+
+        if (!isVariable("Local Img Name", local_img_name) || !isVariable("Registry URL", registry_url) || !isVariable("Image Name", img_name) || !isVariable("Tag", tag)) {
+                steps.error "One or more required variables are empty or null." }
 
          steps.sh "docker tag ${local_img_name}:${tag} ${registry_url}/${img_name}:${tag}"
          steps.sh "docker push ${registry_url}/${img_name}:${tag}"

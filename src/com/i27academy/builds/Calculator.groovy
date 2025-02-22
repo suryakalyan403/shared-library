@@ -23,16 +23,20 @@ class Calculator implements Serializable {
     }
 
     // Division Method
-    def div(n1, n2) {
-        return n1 / n2
+    def isVariable(name, variable) {
+        if ($variable == null | $variable.empty) {
+        return "$name: is empty or null. Kindly provide value" }
     }
 
     def dockerLogin(user, password, registry_url) {
 
         try {
-
-        steps.sh "echo ${password} | docker login -u ${user} --password-stdin ${registry_url}" 
-        return "Successfully Login to Registry: ${registry_url}" 
+          def isuser = isVariable("user", ${user})
+          def isuser = isVariable("password", ${password})
+          def isuser = isVariable("user", ${registry_url})
+          
+          steps.sh "echo ${password} | docker login -u ${user} --password-stdin ${registry_url}" 
+          return "Successfully Login to Registry: ${registry_url}" 
         }
         catch (Exception e) { 
             steps.error "Failed to login: ${e.message}"

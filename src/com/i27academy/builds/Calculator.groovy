@@ -9,9 +9,14 @@ class Calculator implements Serializable {
 
     // Variable Checking Method
     def isVariable(name, variable) {
-        if ($variable == null | $variable.empty) {
-        return "$name: is empty or null. Kindly provide value" }
-    }
+        if (variable == null | variable.empty) {
+
+          steps.echo "$name is empty or null. Kindly provide a value."
+          return false
+         }
+         return true
+       }
+     
 
     def dockerLogin(user, password, registry_url) {
 

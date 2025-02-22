@@ -7,22 +7,7 @@ class Calculator implements Serializable {
         this.steps = steps
     }
 
-    // Addition Method
-    def add(n1, n2) {
-        return n1 + n2
-    }
-
-    // Subtraction Method
-    def sub(n1, n2) {
-        return n1 - n2
-    }
-
-    // Multiplication Method
-    def mul(n1, n2) {
-        return n1 * n2
-    }
-
-    // Division Method
+    // Variable Checking Method
     def isVariable(name, variable) {
         if ($variable == null | $variable.empty) {
         return "$name: is empty or null. Kindly provide value" }
@@ -31,10 +16,9 @@ class Calculator implements Serializable {
     def dockerLogin(user, password, registry_url) {
 
         try {
-          def isuser = isVariable("user", ${user})
-          def ispwd = isVariable("password", ${password})
-          def isregistry = isVariable("user", ${registry_url})
-          
+           if (!isVariable("User", user) || !isVariable("Password", password) || !isVariable("Registry URL", registry_url)) {
+                steps.error "One or more required variables are empty or null."
+            }
           steps.sh "echo ${password} | docker login -u ${user} --password-stdin ${registry_url}" 
           return "Successfully Login to Registry: ${registry_url}" 
         }

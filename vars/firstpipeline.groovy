@@ -29,6 +29,9 @@ def call(Map pipelineparams) {
                             // Call the dockerLogin method
                             def dockerLogin = calculator.dockerLogin(DOCKER_USER, DOCKER_PASSWORD, params.REGISTRY_URL)
                             echo dockerLogin
+                            
+                             def extractImg = calculator.dockerImgExtract(params.IMG_FILEPATH, params.IMG_FILENAME)
+                             echo extractImg
 
                             // Call the dockerPushImgToRegistry method
                             def result = calculator.dockerPushImgToRegistry(params.LOC_IMG_NAME, params.REGISTRY_URL, params.IMG_NAME, params.TAG)

@@ -1,40 +1,27 @@
 // This is Jenkinsfile for Test Project 
-
 pipeline {
 
   agent any
 
-  // stages
-
   stages {
 
-    stage ('Build') {
-     
+    stage('Build') {
       steps {
-
-         echo "***** Intializing the first pipeline ********"
+        echo "***** Initializing the first pipeline ********"
       }
-     
     }
 
-   }
-
-   stage ('cat README'){
-     when {
-   
-       branch "fix-*"
-
-     }
-     steps {
-    
-       sh ''' 
-
-          cat Readme.md
-
-         '''
-
-     }
+    stage('Cat README') {
+      when {
+        branch pattern: "fix-.*", comparator: "REGEXP"
+      }
+      steps {
+        sh '''
+          cat README.md
+        '''
+      }
+    }
 
   }
-
 }
+

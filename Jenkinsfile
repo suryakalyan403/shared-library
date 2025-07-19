@@ -14,7 +14,7 @@ metadata:
 spec:
   containers:
     - name: docker
-      image: docker:24.0.7
+      image: docker:0.0.1
       command:
         - cat
       tty: true

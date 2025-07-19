@@ -2,12 +2,32 @@
 pipeline {
 
   agent {
-  docker {
-    image 'docker:24.0.0.1'
-    args '-v /var/run/docker.sock:/var/run/docker.sock'
-    }
-  }
-
+    kubernetes {
+      label 'docker-agent'
+      defaultContainer 'jnlp'
+      yaml """
+           apiVersion: v1
+           kind: Pod
+           metadata:
+             labels:
+               some-label: docker
+           spec:
+            containers:
+              - name: docker
+                image: docker:24.0.7
+                command:
+                  - cat
+                tty: true
+                volumeMounts:
+                  - name: docker-sock
+                    mountPath: /var/run/docker.sock
+           volumes:
+             - name: docker-sock
+               hostPath:
+                 path: /var/run/docker.sock
+             """
+         }
+      }
 
   stages {
 

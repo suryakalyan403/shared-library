@@ -1,7 +1,13 @@
 // This is Jenkinsfile for Test Project 
 pipeline {
 
-  agent any
+  agent {
+  docker {
+    image 'docker:24.0.0.1'
+    args '-v /var/run/docker.sock:/var/run/docker.sock'
+    }
+  }
+
 
   stages {
 

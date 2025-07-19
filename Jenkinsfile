@@ -14,7 +14,7 @@ metadata:
 spec:
   containers:
     - name: docker
-      image: 7981689475/jenkins-docker-agent:v2.0.0
+      image: 7981689475/jenkins-docker-agent:v2.1.0
       command:
         - cat
       tty: true

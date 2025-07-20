@@ -14,7 +14,7 @@ metadata:
 spec:
   containers:
     - name: docker
-      image: 7981689475/jenkins-docker-agent:v2.4.0
+      image: 7981689475/jenkins-docker-agent:v2.5.0
       env:
       - name: SKP_REG_URL
         value: "r.raid.cloud"

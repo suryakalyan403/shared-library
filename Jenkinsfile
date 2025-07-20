@@ -61,7 +61,7 @@ spec:
    stage("Docker Login"){
      steps {
      sh '''
-        /opt/bin/mds-docker.sh 
+        /opt/mds-docker.sh 
         '''
     }
     }

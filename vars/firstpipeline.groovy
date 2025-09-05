@@ -14,6 +14,7 @@ def call(Map pipelineparams) {
             stage('AdditionStage') {
                 steps {
                     script {
+                        echo "********** Test **********"
                         // Use withCredentials to securely inject Docker credentials
                         echo "Printing Sum of 2 Numbers"
                         println calculator.add(3,4)

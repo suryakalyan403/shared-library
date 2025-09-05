@@ -1,5 +1,5 @@
-@Library("com.builds.eureka.slb@main")
-firstPipeline.groovy(
+@Library("com.builds.eureka.slb")
+firstPipeline(
 
     appName: 'eureka'
  

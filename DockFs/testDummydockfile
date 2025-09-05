@@ -1,0 +1,17 @@
+FROM ubuntu:22.04
+
+#Install bash if not already present 
+RUN apt-get update && apt-get install -y bash
+
+#Copying the script into the image
+COPY myscript.sh /usr/local/bin/script.sh
+
+#Make it Executable
+RUN chmod +x /usr/local/bin/script.sh
+
+#Set the script as the default command 
+CMD ["/usr/local/bin/script.sh"]
+
+
+
+

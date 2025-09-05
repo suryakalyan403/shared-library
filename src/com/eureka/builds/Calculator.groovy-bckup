@@ -1,4 +1,4 @@
-package com.i27academy.builds
+package com.eureka.builds
 
 class Calculator implements Serializable {
     def steps

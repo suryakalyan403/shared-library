@@ -1,4 +1,4 @@
-@Library("com.builds.eureka.slb")
+@Library("com.builds.eureka.slb@main") _ 
 firstPipeline(
 
     appName: 'eureka'

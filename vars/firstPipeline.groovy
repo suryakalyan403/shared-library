@@ -5,6 +5,7 @@ def call(Map pipelineparams) {
 
     // Create an instance of the Calculator class
     Calculator calculator = new Calculator(this)
+    Docker docker = new Docker(this)
 
     pipeline {
         agent {

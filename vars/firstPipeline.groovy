@@ -48,7 +48,7 @@ def call(Map pipelineparams) {
                 steps {
                     script {
                         // Set APPLICATION_NAME dynamically with fallback
-                        env.APPLICATION_NAME = pipelineParams.appName
+                        env.APPLICATION_NAME = pipelineparams.appName
                         env.POM_VERSION      = readMavenPom().getVersion()
                         env.POM_PACKAGING    = readMavenPom().getPackaging()
                     }

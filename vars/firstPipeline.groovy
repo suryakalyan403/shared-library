@@ -51,7 +51,7 @@ def call(Map pipelineparams) {
                 steps {
                    script {
                     echo "***** Starting the Maven Build Stage *****"
-                    docker.buildApp("${env.APPLICATION_NAME}")
+                    docker.buildApp(env.APPLICATION_NAME)
                   }
                 }
             }

@@ -35,6 +35,7 @@ def call(Map pipelineparams) {
 
         parameters {
             choice(name: 'scanOnly', choices: ['no', 'yes'], description: 'This will scan your application')
+            choice(name: 'MvnBuild', choices: ['no', 'yes'], description: 'This will build only for Testing mnv build coomands')
             choice(name: 'DockerBuild', choices: ['no', 'yes'], description: 'This will build a Docker image and push it to the registry')
             choice(name: 'deployToDev', choices: ['no', 'yes'], description: 'This will deploy the app to the Dev environment')
             choice(name: 'deployToTest', choices: ['no', 'yes'], description: 'This will deploy the app to the Test environment')
@@ -44,11 +45,14 @@ def call(Map pipelineparams) {
 
         stages {
             stage('Build') {
+                when {
+                    expression { params.MvnBuild == 'yes' }
+                }
                 steps {
-                    echo "***** Starting the Build Stage *****"
-                    sh "hostname -i"
-                    sh "mvn clean package -DskipTests=true"
-                    sh "java -version"
+                   script {
+                    echo "***** Starting the Maven Build Stage *****"
+                    docker.buildApp("${env.APPLICATION_NAME}")
+                  }
                 }
             }
 

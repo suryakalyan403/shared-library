@@ -44,6 +44,16 @@ def call(Map pipelineparams) {
         }
 
         stages {
+            stage('Init Vars') {
+                steps {
+                    script {
+                        // Set APPLICATION_NAME dynamically with fallback
+                        env.APPLICATION_NAME = pipelineParams.appName
+                        env.POM_VERSION      = readMavenPom().getVersion()
+                        env.POM_PACKAGING    = readMavenPom().getPackaging()
+                    }
+                }
+            }
             stage('Build') {
                 when {
                     expression { params.MvnBuild == 'yes' }

@@ -18,7 +18,7 @@ def call(Map pipelineparams) {
         }
 
         environment {
-            APPLICATION_NAME = "${pipelineParams.appName}"
+            //APPLICATION_NAME = "${pipelineParams.appName}"
 
             // SonarQube
             SONAR_TOKEN = credentials('sonar_creds')

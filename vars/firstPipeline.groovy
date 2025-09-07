@@ -54,7 +54,7 @@ def call(Map pipelineparams) {
                     }
                 }
             }
-            stage('Build') {
+            stage('MvnBuild') {
                 when {
                     expression { params.MvnBuild == 'yes' }
                 }

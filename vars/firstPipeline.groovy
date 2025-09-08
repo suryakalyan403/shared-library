@@ -49,6 +49,8 @@ def call(Map pipelineparams) {
                     script {
                         // Set APPLICATION_NAME dynamically with fallback
                         env.APPLICATION_NAME = pipelineparams.appName
+                        env.HOST_PORT = pipelineparams.hostPort
+                        env.CONT_PORT = pipelineparams.contPort
                         env.POM_VERSION      = readMavenPom().getVersion()
                         env.POM_PACKAGING    = readMavenPom().getPackaging()
                     }
@@ -122,8 +124,8 @@ def call(Map pipelineparams) {
                         script {
                             def applicationName = "${APPLICATION_NAME}-dev"
                             def imageName       = "${DOCKER_HUB}/${APPLICATION_NAME}:${GIT_COMMIT}"
-                            def hostPort        = "5761"
-                            def containerPort   = "8761"
+                            def hostPort        = "${HOST_PORT}"
+                            def containerPort   = "${CONT_PORT}"
 
                             dockerDeploy(applicationName, imageName, hostPort, containerPort)
                         }
@@ -145,8 +147,8 @@ def call(Map pipelineparams) {
                         script {
                             def applicationName = "${APPLICATION_NAME}-test"
                             def imageName       = "${DOCKER_HUB}/${APPLICATION_NAME}:${GIT_COMMIT}"
-                            def hostPort        = "6761"
-                            def containerPort   = "8761"
+                            def hostPort        = "${HOST_PORT}"
+                            def containerPort   = "${CONT_PORT}"
 
                             dockerDeploy(applicationName, imageName, hostPort, containerPort)
                         }
@@ -171,8 +173,8 @@ def call(Map pipelineparams) {
                         script {
                             def applicationName = "${APPLICATION_NAME}-stage"
                             def imageName       = "${DOCKER_HUB}/${APPLICATION_NAME}:${GIT_COMMIT}"
-                            def hostPort        = "7761"
-                            def containerPort   = "8761"
+                            def hostPort        = "${HOST_PORT}"
+                            def containerPort   = "${CONT_PORT}"
 
                             dockerDeploy(applicationName, imageName, hostPort, containerPort)
                         }
@@ -205,8 +207,8 @@ def call(Map pipelineparams) {
                         script {
                             def applicationName = "${APPLICATION_NAME}-prd"
                             def imageName       = "${DOCKER_HUB}/${APPLICATION_NAME}:${GIT_COMMIT}"
-                            def hostPort        = "8761"
-                            def containerPort   = "8761"
+                            def hostPort        = "${HOST_PORT}"
+                            def containerPort   = "${CONT_PORT}"
 
                             dockerDeploy(applicationName, imageName, hostPort, containerPort)
                         }

@@ -47,6 +47,11 @@ def call(Map pipelineparams) {
             MICROSERVICES = 'portal t00 t50t51 t52t53 t54 t55 t56 t80'
         }
 
+        options {
+           skipDefaultCheckout()
+           timeout(time: 20, unit: 'MINUTES')
+        }
+
         stages {
 
             stage('Pre-deployments Checks') {

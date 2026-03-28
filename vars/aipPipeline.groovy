@@ -217,10 +217,24 @@ def call(Map pipelineparams) {
             failure {
                 echo "❌ Deployment failed: ${params.MICROSERVICES} - ${env.BUILD_URL}"
                 archiveArtifacts artifacts: '**/*.log', allowEmptyArchive: true
+                
+                emailtext (
+                    subject: "Build Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                    body: """
+                    Build Failed.
+
+                    Job: ${env.JOB_NAME}
+                    Build Number: ${env.BUILD_NUMBER}
+                    URL: ${env.BUILD_URL}
+                    """,
+                    to: "learngcpwithskalyan@gmail.com"
+                )  
+              
             }
             always {
                 cleanWs()
             }
+
         }
 
     } // end pipeline

@@ -227,7 +227,7 @@ def call(Map pipelineparams) {
                     Build Number: ${env.BUILD_NUMBER}
                     URL: ${env.BUILD_URL}
                     """,
-                    to: "learngcpwithkalyan@gmail.com"
+                    to: "kalyansurya403@gmail.com"
                 )  
               
             }

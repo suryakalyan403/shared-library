@@ -218,7 +218,7 @@ def call(Map pipelineparams) {
                 echo "❌ Deployment failed: ${params.MICROSERVICES} - ${env.BUILD_URL}"
                 archiveArtifacts artifacts: '**/*.log', allowEmptyArchive: true
                 
-                emailtext (
+                emailext (
                     subject: "Build Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
                     body: """
                     Build Failed.
@@ -227,7 +227,7 @@ def call(Map pipelineparams) {
                     Build Number: ${env.BUILD_NUMBER}
                     URL: ${env.BUILD_URL}
                     """,
-                    to: "learngcpwithskalyan@gmail.com"
+                    to: "learngcpwithkalyan@gmail.com"
                 )  
               
             }
